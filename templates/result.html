@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Ascii Art Generator</title>
+		<link href="/style/result_style.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<div class="main">
+        <pre>{{ . }}</pre>
+        <form action="/download" method="post" style="margin-top: 20px;">
+            <input type="hidden" name="ascii-art" value="{{.}}">
+            <button type="submit">Download ASCII Art</button>
+        </form>
+		<button type="button" onclick="window.history.back();">Go Back</button>
+		</div>
+	</body>
+</html>

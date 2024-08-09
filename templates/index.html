@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Ascii Art Generator</title>
+		<link href="/style/index_style.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<div class="main">
+		<h1 class="title">ASCII Art Generator</h1>
+		<form id="asciiForm" action="/ascii-art" method="post">
+			<label for="textInput">Text Input:
+				<textarea id="textInput" name="textInput" rows="3" cols="30" placeholder="ASCII characters here..." required></textarea>
+			</label>
+           	<br>
+           	<label for="bannerType">Select Banner Type:</label><br>
+			<div class="banner">
+				<div class="bannerType1">
+					<input type="radio" id="standard" name="bannerType" value="standard" checked>
+					<label for="standard">standard</label><br>
+				</div>
+			   <div class="bannerType1">
+					<input type="radio" id="shadow" name="bannerType" value="shadow">
+					<label for="shadow">shadow</label><br>
+				</div>
+			   <div class="bannerType1">
+					<input type="radio" id="thinkertoy" name="bannerType" value="thinkertoy">
+					<label for="thinkertoy">thinkertoy</label><br>
+				</div>
+			</div>
+           	<br>
+           	<button type="submit">Generate ASCII Art</button>
+        </form>
+		</div>
+	</body>
+</html>
