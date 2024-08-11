@@ -105,7 +105,7 @@ func errorPages(w http.ResponseWriter, code int) {
 		t.Execute(w, errorType{ErrorCode: "500", Message: "Internal Server Error."})
 	}
 }
-
+//this one for css .
 func serveCSS(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/style/" {
 		errorPages(w, 404)
@@ -125,6 +125,7 @@ func main() {
 		RootPage(w, r)
 	})
 	http.HandleFunc("/ascii-art", AsciiArtResult)
+	//a handel for download page .
 	http.HandleFunc("/download", fileHandler)
 	fmt.Println("\033[32mServer started at http://127.0.0.1:8080\033[0m")
 	err := http.ListenAndServe("127.0.0.1:8080", nil)
