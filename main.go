@@ -73,31 +73,31 @@ func fileHandler(w http.ResponseWriter, r *http.Request) {
 		errorPages(w, 400)
 		return
 	}
-	//this header tells the browser how to handle the content in this response
+	// this header tells the browser how to handle the content in this response
 	w.Header().Set("Content-Disposition", "attachment; filename=ascii-art.txt")
-	//Content-Disposition >> this header tells the browser ...
+	// Content-Disposition >> this header tells the browser ...
 	// how to handle the content
-	//attachment >>Instructs the browser to download the content as a file 
+	// attachment >>Instructs the browser to download the content as a file
 	w.Header().Set("Content-Type", "text/plain")
 	/*
-	Content-Type": This header informs the browser about the type of 
-	content being sent.
-    "text/plain": Specifies that the content is plain text, 
-	 meaning it's not HTML, JSON, or any other type of content.
+			Content-Type": This header informs the browser about the type of
+			content being sent.
+		    "text/plain": Specifies that the content is plain text,
+			 meaning it's not HTML, JSON, or any other type of content.
 	*/
-	w.Header().Set("Content-Length", fmt.Sprintf("%d", len(asciiArt)))
+	w.Header().Set("Content-Length", fmt.Sprintf("%d", len([]byte(asciiArt))))
 	/*
-	Content-Length": This header indicates the size of the response body in bytes.
-    fmt.Sprintf("%d", len(asciiArt)):
-    len(asciiArt): Calculates the length of the ASCII art string, which is the number of bytes in the string.
-    fmt.Sprintf("%d", ...): Converts the length (an integer) into a string format to be used in the header.
+			Content-Length": This header indicates the size of the response body in bytes.
+		    fmt.Sprintf("%d", len(asciiArt)):
+		    len(asciiArt): Calculates the length of the ASCII art string, which is the number of bytes in the string.
+		    fmt.Sprintf("%d", ...): Converts the length (an integer) into a string format to be used in the header.
 	*/
 	w.Write([]byte(asciiArt))
 	/*
 		These lines work together to send the generated ASCII art as a downloadable
-		 text file to the user's browser. When a user clicks on the download 
-		 link or button, the browser receives these headers and understands 
-		 that it should download a file named ascii-art.txt with the 
+		 text file to the user's browser. When a user clicks on the download
+		 link or button, the browser receives these headers and understands
+		 that it should download a file named ascii-art.txt with the
 		 ASCII art content, treating it as plain text.
 	*/
 }
@@ -127,7 +127,8 @@ func errorPages(w http.ResponseWriter, code int) {
 		t.Execute(w, errorType{ErrorCode: "500", Message: "Internal Server Error."})
 	}
 }
-//this one for css .
+
+// this one for css .
 func serveCSS(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/style/" {
 		errorPages(w, 404)
@@ -147,7 +148,7 @@ func main() {
 		RootPage(w, r)
 	})
 	http.HandleFunc("/ascii-art", AsciiArtResult)
-	//a handel for download page .
+	// a handel for download page .
 	http.HandleFunc("/download", fileHandler)
 	fmt.Println("\033[32mServer started at http://127.0.0.1:8080\033[0m")
 	err := http.ListenAndServe("127.0.0.1:8080", nil)
